@@ -1,3 +1,7 @@
+"""
+TODO: Implement a way to ping a range of hosts (probably by using nmap)
+"""
+
 import math
 
 
@@ -13,8 +17,8 @@ class IpAddress:
             for octet in addr:
                 octets.append(int(octet))
             return octets
-        except ValueError as e:
-            print(f'Error: invalid ip address\n{e}')
+        except ValueError:
+            print(f'Error: invalid ip address')
             exit(-1)
 
     def to_binary(self):
@@ -61,8 +65,9 @@ class Subnet:
         return num_hosts
 
     # A bit of a messy implementation
-    # Uses bitwise AND to find the network id
-    # using the address provided and the subnet mask
+    # uses bitwise operators to get the network id and
+    # broadcast address.
+
     def get_net_id(self):
         sub = self.subnet.to_octets()
         addr = self.host.to_octets()
@@ -74,6 +79,6 @@ class Subnet:
         net_id = IpAddress(self.get_net_id())
         net_id_octs = net_id.to_octets()
         sub = self.subnet.to_octets()
-        broad_addr = [str((netid | ~subnet) & 0xff) for netid, subnet in zip(net_id_octs, sub)]
+        broad_addr = [str((x | ~y) & 0xff) for x, y in zip(net_id_octs, sub)]
 
         return '.'.join(broad_addr)
