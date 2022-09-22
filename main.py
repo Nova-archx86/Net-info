@@ -32,7 +32,9 @@ def main(args):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='This script automates the tedious task of subnetting and other tools '
                                                  'to get more information about a network')
-    parser.add_argument('--host', metavar='-ip', type=str, help='The host address to calculate', required=True)
-    parser.add_argument('--subnet', metavar='-sn', type=str, help='The subnet mask in CIDR', required=True)
+    parser.add_argument('--host', metavar='|--host ip Ex: 192.168.0.1|', type=str, help='The host address to calculate',
+                        required=True)
+    parser.add_argument('--subnet', metavar='|--subnet prefix Ex: /24|', type=str, help='The subnet mask in CIDR',
+                        required=True)
     arguments = parser.parse_args()
     main(arguments)
