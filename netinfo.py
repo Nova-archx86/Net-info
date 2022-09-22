@@ -51,10 +51,19 @@ class Subnet:
             '/27': '255.255.255.224', '/28': '255.255.255.240', '/29': '255.255.255.248',
             '/30': '255.255.255.252', '/31': '255.255.255.254', '/32': '255.255.255.255',
         }
-        self.subnet = IpAddress(self.subnet_prefixes[subnet])
+        self.subnet = subnet
+
+    def is_valid(self):
+        cidr = self.subnet.split('/')
+        try:
+            if int(cidr[1]) > 32 or int(cidr[1]) < 0:
+                return False
+        except ValueError:
+            return False
 
     def get_hosts(self):
-        bin_mask = self.subnet.to_binary()
+        subnet_mask = IpAddress(self.subnet_prefixes[self.subnet])
+        bin_mask = subnet_mask.to_binary()
 
         counter = 0
         for bit in range(0, len(bin_mask)):
@@ -69,16 +78,18 @@ class Subnet:
     # broadcast address.
 
     def get_net_id(self):
-        sub = self.subnet.to_octets()
+        subnet_mask = IpAddress(self.subnet_prefixes[self.subnet])
+        sub = subnet_mask.to_octets()
         addr = self.host.to_octets()
         net_id = [str(x & y) for x, y in zip(sub, addr)]
 
         return '.'.join(net_id)
 
     def get_broadcast_addr(self):
+        subnet_mask = IpAddress(self.subnet_prefixes[self.subnet])
         net_id = IpAddress(self.get_net_id())
         net_id_octs = net_id.to_octets()
-        sub = self.subnet.to_octets()
+        sub = subnet_mask.to_octets()
         broad_addr = [str((x | ~y) & 0xff) for x, y in zip(net_id_octs, sub)]
 
         return '.'.join(broad_addr)
