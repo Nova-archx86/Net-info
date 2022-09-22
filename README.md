@@ -1,6 +1,6 @@
-# Decription:
+# Description:
 
-This simple script allows you to easlity get basic information about a network/subnet from an Ip address and CIDR subnet
+This script automates the tedious task of subnetting and provides other useful information about a network
 
 # Installation:
 

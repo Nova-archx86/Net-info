@@ -1,21 +1,24 @@
 import argparse
 
-from netinfo import Subnet
+from netinfo import IpAddress, Subnet
 
 
 def main(args):
-    nf = Subnet(args.host, args.subnet)
-    octs = nf.to_octets(args.host)
+    ip = IpAddress(args.host)
+    nf = Subnet(ip, args.subnet)
 
-    for octet in octs:
-        if octet > 255 or octet < 0:
-            print('Error Invalid Ip address!')
-            exit(-1)
+    if ip.is_valid() is False:
+        print('Error: invalid ip address!')
+        exit(0)
 
-    bin_addr = nf.to_binary(octs)
-    num_hosts = nf.get_all_hosts()
+    bin_addr = ip.to_binary()
+    num_hosts = nf.get_hosts()
+    net_id = nf.get_net_id()
+    broad_addr = nf.get_broadcast_addr()
     print(f'Address provided: \n{args.host}\n')
     print(f'Address in binary: \n{bin_addr}\n')
+    print(f'Network id: \n{net_id}\n')
+    print(f'Broadcast address: \n{broad_addr}\n')
     print(f'Subnet mask: \n{nf.subnet_prefixes[args.subnet]}\n')
     print(f'# of hosts (minus netid and broadcast address): \n{int(num_hosts)}\n')
 
