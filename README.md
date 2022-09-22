@@ -4,7 +4,7 @@ This script automates the tedious task of subnetting and provides other useful i
 
 # Installation:
 
-NOTE: This project requires python 3.6 or later to run
+NOTE: This project requires a python interpreter >= 3.10 or later to run
 
 ### Using git:
 
