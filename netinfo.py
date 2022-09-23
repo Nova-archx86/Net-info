@@ -12,10 +12,8 @@ class IpAddress:
 
     def to_octets(self):
         addr = self.addr.split('.')
-        octets = []
         try:
-            for octet in addr:
-                octets.append(int(octet))
+            octets = [int(x) for x in addr]
             return octets
         except ValueError:
             print(f'Error: invalid ip address')
@@ -56,6 +54,8 @@ class Subnet:
     def is_valid(self):
         cidr = self.subnet.split('/')
         try:
+            if len(cidr) == 1:
+                return False
             if int(cidr[1]) > 32 or int(cidr[1]) < 0:
                 return False
         except ValueError:

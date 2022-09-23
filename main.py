@@ -18,13 +18,14 @@ def main(args):
         exit(-1)
 
     if sn.is_valid() is False:
-        print('Error: invalid subnet prefix!')
+        print('Error: invalid subnet prefix! [ Make sure to include a / ]')
         exit(-1)
 
     bin_addr = ip.to_binary()
     num_hosts = sn.get_hosts()
     net_id = sn.get_net_id()
     broad_addr = sn.get_broadcast_addr()
+    print('---------- Network Details ----------')
     print(f'Address provided: \n{args.host}\n')
     print(f'Address in binary: \n{bin_addr}\n')
     print(f'Network id: \n{net_id}\n')
@@ -34,8 +35,9 @@ def main(args):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='This script automates the tedious task of subnetting and other tools '
-                                                 'to get more isnormation about a network')
+    parser = argparse.ArgumentParser(description='This script automates the tedious task of subnetting and uses '
+                                                 'other tools '
+                                                 'to get more information about a network')
     parser.add_argument('--host', metavar='|--host ip Ex: 192.168.0.1|', type=str, help='The host address to calculate',
                         required=True)
     parser.add_argument('--subnet', metavar='|--subnet prefix Ex: /24|', type=str, help='The subnet mask in CIDR',
