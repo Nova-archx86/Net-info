@@ -7,6 +7,7 @@ This script automates the tedious task of subnetting and provides other useful i
 NOTE: This project requires a python interpreter >= 3.10 or later to run
 ### On Windows:
 Download and extract the zipfile from the releases page
+### On Unix like operating systems:
 ### Using git:
 
     git clone https://github.com/Nova-archx86/Net-info
