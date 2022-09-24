@@ -4,7 +4,7 @@ This script automates the tedious task of subnetting and provides other useful i
 
 # Installation:
 
-NOTE: This project requires a python interpreter >= 3.10 or later to run
+NOTE: This project requires a python interpreter >= 3.6 (3.10 recommended!) or later to run
 ### On Windows:
 Download and extract the zipfile from the releases page
 ### On Unix like operating systems:
@@ -22,8 +22,8 @@ Download and extract the zipfile from the releases page
     cd PATH_TO_SOURCE
 ## Step 2:
 ### run the command with the following arguments
-    python3 main.py --host <ip address> --subnet <cidr subnet>
+    python3 netinfo.py --host <ip address> --subnet <cidr subnet>
 ### Ex:
-    python3 main.py --host 192.168.0.1 --subnet /24
+    python3 netinfo.py --host 192.168.0.1 --subnet /24
     
 
