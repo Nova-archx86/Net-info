@@ -6,7 +6,7 @@ TODO:
 
 import argparse
 
-from Subnet import Subnet
+from subnet import Subnet
 from ip_address import IpAddress
 
 
