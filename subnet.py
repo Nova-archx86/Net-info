@@ -1,7 +1,3 @@
-"""
-TODO: Implement a way to ping a range of hosts (probably by using nmap)
-"""
-
 import math
 from ip_address import IpAddress
 
